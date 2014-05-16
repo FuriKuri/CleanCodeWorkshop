@@ -4,39 +4,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Grid {
-    private List<String> headers = new ArrayList<>();
+    private List<String> header = new ArrayList<>();
 
-    private List<List<String>> rows = new ArrayList<>();
+    private List<List<String>> lines = new ArrayList<>();
 
 
-    public void setHeaders(List<String> headers) {
-        this.headers = headers;
+    public void setHeader(List<String> header) {
+        this.header = header;
     }
 
-    public void addRow(List<String> row) {
-        rows.add(row);
+    public void addLine(List<String> line) {
+        lines.add(line);
     }
 
     public int getColumnsCount() {
-        return headers.size();
+        return header.size();
     }
 
-    public int getWidth(int columnNumber) {
-        int max = headers.get(columnNumber).length();
-        for (List<String> row : rows) {
-            String rowCell = row.get(columnNumber);
-            if (rowCell.length() > max) {
-                max = rowCell.length();
+    public int getMaxWidth(int columnNumber) {
+        int max = header.get(columnNumber).length();
+        for (List<String> line : lines) {
+            String lineCell = line.get(columnNumber);
+            if (lineCell.length() > max) {
+                max = lineCell.length();
             }
         }
         return max;
     }
 
-    public List<String> getHeaders() {
-        return headers;
+    public List<String> getHeader() {
+        return header;
     }
 
-    public List<List<String>> getRows() {
-        return rows;
+    public List<List<String>> getLines() {
+        return lines;
     }
 }

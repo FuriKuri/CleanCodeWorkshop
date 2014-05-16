@@ -10,7 +10,7 @@ public class Input {
         start.accept(args);
         Scanner in = new Scanner(System.in);
         String input = in.nextLine().toLowerCase();
-        while (!input.equals("e")) {
+        while (!input.equals("x")) {
             switch (input) {
                 case "f":
                     commandConsumer.accept(Command.FIRST);

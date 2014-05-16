@@ -81,9 +81,8 @@ public class Core {
     }
 
     private void showPage() {
-        List<String> lines = new ArrayList<>(originalLines);
-        String headerLine = lines.get(0);
-        lines.remove(0);
+        List<String> lines = new ArrayList<>(this.originalLines);
+        String headerLine = lines.remove(0);
         List<String> content = page(lines, itemsPerPage, currentPage);
         content.add(0, headerLine);
         List<String> formattedLines = format(content);
@@ -91,7 +90,6 @@ public class Core {
     }
 
     private List<String> page(List<String> lines, int limit, int pageNumber) {
-        List<String> l = new ArrayList<>();
         return lines.stream().skip(pageNumber * limit).limit(limit).collect(Collectors.toList());
     }
 
@@ -100,10 +98,10 @@ public class Core {
         boolean isFirstLine = true;
         for (String line : lines) {
             if (isFirstLine) {
-                grid.setHeaders(split(line));
+                grid.setHeader(split(line));
                 isFirstLine = false;
             } else {
-                grid.addRow(split(line));
+                grid.addLine(split(line));
             }
         }
         return createLines(grid);
@@ -120,14 +118,14 @@ public class Core {
     private List<Integer> calculateWidths(Grid grid) {
         List<Integer> columnsWidth = new ArrayList<>();
         for (int i = 0; i < grid.getColumnsCount(); i++) {
-            columnsWidth.add(grid.getWidth(i));
+            columnsWidth.add(grid.getMaxWidth(i));
         }
         return columnsWidth;
     }
 
     private void addContent(Grid grid, List<Integer> columnsWidth, List<String> lines) {
         String line;
-        for (List<String> row : grid.getRows()) {
+        for (List<String> row : grid.getLines()) {
             line = "";
             for (int i = 0; i < grid.getColumnsCount(); i++) {
                 line += StringUtil.fillWithSpaces(row.get(i), columnsWidth.get(i)) + " | ";
@@ -140,7 +138,7 @@ public class Core {
         String line = "";
         String separator = "";
         for (int i = 0; i < grid.getColumnsCount(); i++) {
-            line += StringUtil.fillWithSpaces(grid.getHeaders().get(i), columnsWidth.get(i)) + " | ";
+            line += StringUtil.fillWithSpaces(grid.getHeader().get(i), columnsWidth.get(i)) + " | ";
             separator += StringUtil.fillWithMinus("", columnsWidth.get(i)) + "-+-";
         }
         lines.add(line);

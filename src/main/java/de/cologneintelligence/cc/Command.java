@@ -4,6 +4,5 @@ public enum Command {
     NEXT,
     PREV,
     LAST,
-    FIRST;
-
+    FIRST
 }
