@@ -1,10 +1,9 @@
-package io.github.furikuri.cc.file;
+package de.cologneintelligence.cc.file;
 
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 public class FileReader {
@@ -12,7 +11,6 @@ public class FileReader {
         try {
             return FileUtils.readLines(new File(fileName));
         } catch (IOException e) {
-            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }

@@ -1,12 +1,13 @@
-package io.github.furikuri.cc.ui;
+package de.cologneintelligence.cc.ui;
 
-import io.github.furikuri.cc.Command;
+import de.cologneintelligence.cc.Command;
 
 import java.util.Scanner;
 import java.util.function.Consumer;
 
-public class Terminal {
-    public void startReadLoop(Consumer<Command> commandConsumer) {
+public class Input {
+    public void startReadLoop(String[] args, Consumer<String[]> start, Consumer<Command> commandConsumer) {
+        start.accept(args);
         Scanner in = new Scanner(System.in);
         String input = in.nextLine().toLowerCase();
         while (!input.equals("e")) {

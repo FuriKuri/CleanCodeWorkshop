@@ -1,8 +1,8 @@
-package io.github.furikuri.cc.ui;
+package de.cologneintelligence.cc.ui;
 
 import java.util.List;
 
-public class UI {
+public class Output {
     public void print(List<String> lines) {
         for (String line : lines) {
             System.out.println(line);

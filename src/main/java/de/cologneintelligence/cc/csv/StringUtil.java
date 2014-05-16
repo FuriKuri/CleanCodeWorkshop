@@ -1,4 +1,4 @@
-package io.github.furikuri.cc.csv;
+package de.cologneintelligence.cc.csv;
 
 public class StringUtil {
     public static String fillWithSpaces(String string, int length) {

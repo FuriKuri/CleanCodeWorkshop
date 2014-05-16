@@ -1,4 +1,4 @@
-package io.github.furikuri.cc.csv;
+package de.cologneintelligence.cc.csv;
 
 import java.util.ArrayList;
 import java.util.List;

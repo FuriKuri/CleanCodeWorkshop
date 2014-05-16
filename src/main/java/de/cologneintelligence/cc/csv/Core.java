@@ -1,6 +1,6 @@
-package io.github.furikuri.cc.csv;
+package de.cologneintelligence.cc.csv;
 
-import io.github.furikuri.cc.Command;
+import de.cologneintelligence.cc.Command;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -110,13 +110,33 @@ public class Core {
     }
 
     private List<String> createLines(Grid grid) {
+        List<Integer> columnsWidth = calculateWidths(grid);
+        List<String> lines = new ArrayList<>();
+        addHeader(grid, columnsWidth, lines);
+        addContent(grid, columnsWidth, lines);
+        return lines;
+    }
+
+    private List<Integer> calculateWidths(Grid grid) {
         List<Integer> columnsWidth = new ArrayList<>();
         for (int i = 0; i < grid.getColumnsCount(); i++) {
             columnsWidth.add(grid.getWidth(i));
         }
+        return columnsWidth;
+    }
 
-        List<String> lines = new ArrayList<>();
+    private void addContent(Grid grid, List<Integer> columnsWidth, List<String> lines) {
+        String line;
+        for (List<String> row : grid.getRows()) {
+            line = "";
+            for (int i = 0; i < grid.getColumnsCount(); i++) {
+                line += StringUtil.fillWithSpaces(row.get(i), columnsWidth.get(i)) + " | ";
+            }
+            lines.add(line);
+        }
+    }
 
+    private void addHeader(Grid grid, List<Integer> columnsWidth, List<String> lines) {
         String line = "";
         String separator = "";
         for (int i = 0; i < grid.getColumnsCount(); i++) {
@@ -125,15 +145,6 @@ public class Core {
         }
         lines.add(line);
         lines.add(separator);
-        for (List<String> row : grid.getRows()) {
-            line = "";
-            for (int i = 0; i < grid.getColumnsCount(); i++) {
-                line += StringUtil.fillWithSpaces(row.get(i), columnsWidth.get(i)) + " | ";
-            }
-            lines.add(line);
-        }
-
-        return lines;
     }
 
     private List<String> split(String line) {

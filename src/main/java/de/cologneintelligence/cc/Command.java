@@ -1,4 +1,4 @@
-package io.github.furikuri.cc;
+package de.cologneintelligence.cc;
 
 public enum Command {
     NEXT,
