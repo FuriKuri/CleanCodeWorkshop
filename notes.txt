@@ -1,0 +1,12 @@
+Blätter Operation
+Knoten Integration
+
+- csvview datei.csv 20
+First
+Next
+Prev
+Last
+Exit
+
+Resources -> Provider
+Protal
